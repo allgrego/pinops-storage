@@ -13,21 +13,22 @@ CREATE TABLE IF NOT EXISTS ops.op_status (
 );
 
 -- Insert initial statuses
-INSERT INTO ops.op_status (status_name) VALUES
-    ('Opened'),
-    ('In transit'),
-    ('On destination'),
-    ('In warehouse'),
-    ('Prealerted'),
-    ('Closed');
+INSERT INTO ops.op_status (status_id, status_name) VALUES
+    (1, 'Opened'),
+    (2, 'In transit'),
+    (3, 'On destination'),
+    (4, 'In warehouse'),
+    (5, 'Prealerted'),
+    (6, 'Closed');
 
 -- Create the op_file table
 CREATE TABLE IF NOT EXISTS ops.op_files (
     op_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    -- Op specs
+    op_type VARCHAR(100), -- 'maritime', 'air', 'road', 'train'
     status_id SERIAL REFERENCES ops.op_status(status_id) NOT NULL,
     client_id UUID REFERENCES clients.clients(client_id) NOT NULL,
     -- Providers
-    international_agent_id UUID REFERENCES providers.international_agents(agent_id),
     carrier_id UUID REFERENCES providers.carriers(carrier_id), -- Assuming you have a carriers table
     -- Locations
     origin_location VARCHAR(100), 
@@ -58,13 +59,6 @@ CREATE TABLE IF NOT EXISTS ops.op_files (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create a junction table for op_file and international_agents (many-to-many relationship)
-CREATE TABLE IF NOT EXISTS ops.op_file_agents (
-    op_id UUID REFERENCES ops.op_file(op_id) ON DELETE CASCADE,
-    agent_id UUID REFERENCES providers.international_agents(agent_id) ON DELETE CASCADE,
-    PRIMARY KEY (op_id, agent_id)
-);
-
 -- Function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION ops.update_updated_at_column()
 RETURNS TRIGGER AS $$
@@ -76,6 +70,23 @@ $$ LANGUAGE plpgsql;
 
 -- Trigger to automatically update updated_at
 CREATE OR REPLACE TRIGGER update_op_file_modtime
-BEFORE UPDATE ON ops.op_file
+BEFORE UPDATE ON ops.op_files
 FOR EACH ROW
 EXECUTE FUNCTION ops.update_updated_at_column();
+
+-- Create the Ops file comments table
+CREATE TABLE IF NOT EXISTS ops.op_file_comments (
+    comment_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    op_id UUID REFERENCES ops.op_files(op_id) ON DELETE CASCADE NOT NULL,
+    author VARCHAR(100),
+    content TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create a junction table for op_file and international_agents link (many-to-many relationship)
+CREATE TABLE IF NOT EXISTS ops.op_file_agent_link (
+    op_id UUID REFERENCES ops.op_files(op_id) ON DELETE CASCADE,
+    agent_id UUID REFERENCES providers.international_agents(agent_id) ON DELETE CASCADE,
+    PRIMARY KEY (op_id, agent_id)
+);
+

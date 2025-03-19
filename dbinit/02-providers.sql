@@ -18,17 +18,3 @@ CREATE TABLE IF NOT EXISTS carriers (
     type VARCHAR(255) NOT NULL, -- shipping_line, airline TBD
     name VARCHAR(255) NOT NULL -- Or TEXT for potentially longer names
 );
-
--- Example insert
-INSERT INTO international_agents (name) VALUES
-    ('XPD RD'),
-    ('XPD CL'),
-    ('LEGEND LOGISTICS CO, LTD'),
-    ('Logiven'),
-    ('TITAN');
-
-
-INSERT INTO carriers (name, type) VALUES
-    ('Hapag Lloyd', 'shipping_line'),
-    ('ZIM Line', 'shipping_line'),
-    ('M7 AEROLINEA', 'airline');
