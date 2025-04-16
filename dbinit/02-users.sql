@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS users.users (
 
 -- Insert default users
 INSERT INTO users.users (name, role_id, hashed_password, email) VALUES
-    ('The Admin', 'admin', '$2y$10$9jYCtDJqRV/vYDnT3kIJHOlxmtdaL2Rcz2nw0A2vXlFq4sP3ADDFW', 'admin@pinopslogistics.com'),
-    ('Ops Manager User', 'ops_manager', '$2y$10$9jYCtDJqRV/vYDnT3kIJHOlxmtdaL2Rcz2nw0A2vXlFq4sP3ADDFW', 'ops_manager@pinopslogistics.com'),
-    ('Traffic Operator User', 'traffic_operator', '$2y$10$9jYCtDJqRV/vYDnT3kIJHOlxmtdaL2Rcz2nw0A2vXlFq4sP3ADDFW', 'traffic_operator@pinopslogistics.com'),
-    ('Seller User', 'seller', '$2y$10$9jYCtDJqRV/vYDnT3kIJHOlxmtdaL2Rcz2nw0A2vXlFq4sP3ADDFW', 'seller@pinopslogistics.com');
+    ('The Admin', 'admin', '286ccf02f387c6e1cb84892c08341e69:cf1fc3ef5ad70c3c113f1145b6986d9a915695708bb3680683fc2de4a024b722', 'admin@pinopslogistics.com'),
+    ('Ops Manager User', 'ops_manager', '286ccf02f387c6e1cb84892c08341e69:cf1fc3ef5ad70c3c113f1145b6986d9a915695708bb3680683fc2de4a024b722', 'ops_manager@pinopslogistics.com'),
+    ('Traffic Operator User', 'traffic_operator', '286ccf02f387c6e1cb84892c08341e69:cf1fc3ef5ad70c3c113f1145b6986d9a915695708bb3680683fc2de4a024b722', 'traffic_operator@pinopslogistics.com'),
+    ('Seller User', 'seller', '286ccf02f387c6e1cb84892c08341e69:cf1fc3ef5ad70c3c113f1145b6986d9a915695708bb3680683fc2de4a024b722', 'seller@pinopslogistics.com');
