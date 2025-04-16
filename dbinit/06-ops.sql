@@ -35,9 +35,9 @@ CREATE TABLE IF NOT EXISTS ops.op_files (
     carrier_id UUID REFERENCES carriers.carriers(carrier_id), 
     -- Locations
     origin_location VARCHAR(100), 
-    origin_country_id SERIAL REFERENCES geodata.countries(country_id) ON DELETE SET NULL ON UPDATE CASCADE,
+    origin_country_id INTEGER REFERENCES geodata.countries(country_id) ON DELETE SET NULL ON UPDATE CASCADE,
     destination_location VARCHAR(100), 
-    destination_country_id SERIAL REFERENCES geodata.countries(country_id) ON DELETE SET NULL ON UPDATE CASCADE,
+    destination_country_id INTEGER REFERENCES geodata.countries(country_id) ON DELETE SET NULL ON UPDATE CASCADE,
     -- Schedules
     estimated_time_departure DATE, -- ETD
     actual_time_departure DATE, -- ATD
