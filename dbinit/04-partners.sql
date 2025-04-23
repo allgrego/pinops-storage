@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS partners.partner_types (
 -- Insert default types
 INSERT INTO partners.partner_types (partner_type_id, name, description) VALUES
     ('logistics_operator', 'International logistics operator', 'Freight forwarders, brokers, etc.'),
-    ('port_agent', 'Port Agent', NULL),
+    ('port_agent', 'Port agent', NULL),
     ('insurer', 'Cargo insurance company ', NULL),
     ('coloader', 'Co-loader', NULL),
     ('customs_broker', 'Customs broker', NULL),

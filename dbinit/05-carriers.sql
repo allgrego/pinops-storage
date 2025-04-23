@@ -14,12 +14,11 @@ CREATE TABLE IF NOT EXISTS carriers.carrier_types (
 -- Insert default types
 INSERT INTO carriers.carrier_types (carrier_type_id, name, description) VALUES
     ('shipping_line', 'Shipping Line', NULL),
-    ('airline', 'Airlilne', NULL),
-    ('insurer', 'Cargo insurance company ', NULL),
-    ('road_freight_local', 'Local Trucking Company', NULL),
-    ('road_freight_international', 'International Trucking Company', NULL),
+    ('airline', 'Airline', NULL),
+    ('road_freight_local', 'Local trucking company', NULL),
+    ('road_freight_international', 'International trucking company', NULL),
     ('courier', 'Courier', NULL),
-    ('railway_company', 'Railway Company', NULL),
+    ('railway_company', 'Railway company', NULL),
     ('other', 'Other', 'Other types of carriers');
 
 
