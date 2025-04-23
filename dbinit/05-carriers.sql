@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS carriers.carriers (
 CREATE TABLE IF NOT EXISTS carriers.carrier_contacts (
     carrier_contact_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     carrier_id UUID REFERENCES carriers.carriers(carrier_id) ON DELETE CASCADE,
-    name VARCHAR(255) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
     position VARCHAR(255),
     email VARCHAR(255),
     mobile VARCHAR(100),

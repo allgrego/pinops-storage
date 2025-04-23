@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS partners.partners (
 CREATE TABLE IF NOT EXISTS partners.partner_contacts (
     partner_contact_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     partner_id UUID REFERENCES partners.partners(partner_id) ON DELETE CASCADE,
-    name VARCHAR(255) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
     position VARCHAR(255),
     email VARCHAR(255),
     mobile VARCHAR(100),
