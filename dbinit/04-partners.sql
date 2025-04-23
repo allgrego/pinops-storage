@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS partners.partners (
     name VARCHAR(255) UNIQUE NOT NULL, -- Or TEXT for potentially longer names
     tax_id VARCHAR(100) UNIQUE,
     webpage VARCHAR(255),
-    country_id SERIAL REFERENCES geodata.countries(country_id) ON DELETE SET NULL,
+    country_id INTEGER REFERENCES geodata.countries(country_id) ON DELETE SET NULL,
     disabled BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
